@@ -1,2 +1,4 @@
 /node_modules
-secrets.js/
+/public/bower_components
+/logs
+/npm-debug.log

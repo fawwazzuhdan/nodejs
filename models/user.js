@@ -1,21 +1,50 @@
-const mongoose = require("mongoose");
+'use strict';
 
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      require: true,
-    },
-  },
-  { timestamps: true }
-);
+module.exports = {
+	schema: {
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+		},
+		mobile: {
+			type: String,
+			required: false
+		},
+		name: {
+			type: String,
+			required: false
+		},
+		gender: {
+			type: String,
+			required: false,
+			default: 'male'
+		},
+		password: {
+			type: String,
+			required: true
+		},
+		dob: {
+			type: Date,
+			required: false
+		},
+		deactivated: {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+		type: {
+			type: String,
+			required: false
+		}
+	},
 
-module.exports = mongoose.model("User", userSchema);
+    // instance methods goes here
+	methods: {
+
+	},
+
+    // statics methods goes here
+	statics: {
+	}
+};
