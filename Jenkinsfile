@@ -14,16 +14,17 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm install'
+                sh 'pwd'
                 echo 'npm install done'
             }
         }  
 
                 
-        stage('Test') {
-            steps {
-                sh 'npm test'
-                echo 'test done'
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh 'npm test'
+        //         echo 'test done'
+        //     }
+        // }
     }
 }
