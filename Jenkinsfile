@@ -1,14 +1,28 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-bullseye-slim' 
-            args '-p 3000:3000' 
-        }
-    }
+    agent any
+    
+    tools {nodejs "node"}
+    
     stages {
-        stage('Build') { 
+        
+        stage('Git') {
             steps {
-                sh 'npm install' 
+                git 'https://github.com/fawwazzuhdan/nodejs.git'
+            }
+        }
+            
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                echo 'npm install done'
+            }
+        }  
+
+                
+        stage('Test') {
+            steps {
+                sh 'node test'
+                echo 'test done'
             }
         }
     }
