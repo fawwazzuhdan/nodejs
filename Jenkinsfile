@@ -30,7 +30,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run --name=app-nodejs --rm -it -d fawwazzuhdan/nodejs:latest'
+                sh 'docker run --rm -it -d fawwazzuhdan/nodejs:latest'
             }
         }
     }
