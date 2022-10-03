@@ -16,11 +16,11 @@ pipeline {
                 script {
                     sh 'npm install'
                     echo 'npm install done'
-                    // sh 'docker build -t fawwazzuhdan/nodejs:latest .'
                     app = docker.build("fawwazzuhdan/nodejs")
                     docker.WithRegistry("https://registry.hub.docker.com", "docker-hub") {
                         app.push("latest")
                     }
+                    // sh 'docker build -t fawwazzuhdan/nodejs:latest .'
                 }
             }
         }
