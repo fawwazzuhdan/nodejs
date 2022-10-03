@@ -5,20 +5,22 @@ pipeline {
     
     stages {
         
-        stage('Git') {
-            steps {
-                git 'https://github.com/fawwazzuhdan/nodejs.git'
-            }
-        }
+        // stage('Git') {
+        //     steps {
+        //         git 'https://github.com/fawwazzuhdan/nodejs.git'
+        //     }
+        // }
             
         stage('Build') {
             steps {
-                sh 'npm install'
-                echo 'npm install done'
-                // sh 'docker build -t fawwazzuhdan/nodejs:latest .'
-                app = docker.build("fawwazzuhdan/nodejs")
-                docker.WithRegistry("https://registry.hub.docker.com", "docker-hub") {
-                    app.push("latest")
+                script {
+                    sh 'npm install'
+                    echo 'npm install done'
+                    // sh 'docker build -t fawwazzuhdan/nodejs:latest .'
+                    app = docker.build("fawwazzuhdan/nodejs")
+                    docker.WithRegistry("https://registry.hub.docker.com", "docker-hub") {
+                        app.push("latest")
+                    }
                 }
             }
         }
