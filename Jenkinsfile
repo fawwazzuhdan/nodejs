@@ -13,7 +13,6 @@ pipeline {
             
         stage('Build') {
             steps {
-                script {
                     sh 'npm install'
                     echo 'npm install done'
                     app = docker.build("fawwazzuhdan/nodejs")
@@ -21,7 +20,6 @@ pipeline {
                         app.push("latest")
                     }
                     // sh 'docker build -t fawwazzuhdan/nodejs:latest .'
-                }
             }
         }
 
