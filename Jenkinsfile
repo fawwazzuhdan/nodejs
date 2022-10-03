@@ -15,15 +15,33 @@ pipeline {
             steps {
                 sh 'npm install'
                 echo 'npm install done'
+                // sh 'docker build -t fawwazzuhdan/nodejs:latest .'
                 app = docker.build("fawwazzuhdan/nodejs")
-                docker.WithRegistry("https://registry.hub.docker.com", "dockerhub") {
+                docker.WithRegistry("https://registry.hub.docker.com", "docker-hub") {
                     app.push("latest")
                 }
             }
         }
 
-        stage('Kubernetes') {
-            sh 'kubectl apply -f deployment.yaml'
-        }
+        // stage('Login') {
+        //     steps {
+        //         sh 'echo $env.PASS_DOCKER | docker login -u $env.USER_DOCKER --password-stdin'
+        //     }
+        // }
+
+        // stage('Push') {
+        //     steps {
+        //         sh 'docker push fawwazzuhdan/nodejs:latest'
+        //     }
+        // }
+
+        // stage('Kubernetes') {
+        //     steps{
+        //         withKubeConfig([]) {
+
+        //         }
+        //     }
+        //     sh 'kubectl apply -f kube'
+        // }
     }
 }
